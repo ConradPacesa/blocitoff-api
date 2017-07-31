@@ -1,0 +1,22 @@
+{
+  "name": "blocitoff-api",
+  "scripts": {
+  },
+  "env": {
+    "SENDGRID_PASSWORD": {
+      "required": true
+    },
+    "SENDGRID_USERNAME": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+    "heroku-postgresql",
+    "sendgrid"
+  ],
+  "buildpacks": [
+
+  ]
+}
