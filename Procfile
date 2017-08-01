@@ -1,1 +1,1 @@
-web: bundle exec puma -t 5:5 -p ${PORT:-3000} -e ${RACK_ENV:-development}
+web: rails s -b 0.0.0.0 -p ${PORT}
