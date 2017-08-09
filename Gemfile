@@ -43,3 +43,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'listen', '~> 3.0.5'
 gem 'devise'
 gem 'figaro'
+gem 'simple_token_authentication', '~> 1.0'
