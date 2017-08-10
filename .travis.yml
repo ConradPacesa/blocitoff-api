@@ -3,7 +3,7 @@ before_install:
   - gem install bundler
 before_script:
   - psql -c 'create database blocitoff_test;' -U postgres
-  - bin/rails db:migrate RAILS_ENV=test
+  - rails db:migrate RAILS_ENV=test
 rvm:
   - 2.3.3
 sudo: false
