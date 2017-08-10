@@ -10,7 +10,6 @@ default: &default
 development:
   <<: *default
 
-
 test:
   adapter: postgresql
   database: blocitoff_test
