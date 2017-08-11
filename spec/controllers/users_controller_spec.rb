@@ -6,8 +6,8 @@ RSpec.describe UsersController, type: :controller do
 
   describe "GET #show" do
     context 'not signed in' do
-      it 'returns http redirect' do
-        get :show, {id: my_user.id}
+      it 'returns http 4xx' do
+        get :show, params: {id: my_user.id}
         expect(response).to have_http_status(:unauthorized)
       end
     end
@@ -18,12 +18,12 @@ RSpec.describe UsersController, type: :controller do
       end
 
       it "returns http success" do
-        get :show, {id: my_user.id}
+        get :show, params: {id: my_user.id}
         expect(response).to have_http_status(:success)
       end
 
       it "assigns user to @user" do
-        get :show, {id: my_user.id}
+        get :show, params: {id: my_user.id}
         expect(assigns(:user)).to eq(my_user)
       end
     end
