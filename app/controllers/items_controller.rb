@@ -1,16 +1,9 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :update, :destroy]
+  before_action :set_user
 
-  # GET /items
   def index
-    @items = Item.all
-
-    render json: @items
-  end
-
-  # GET /items/1
-  def show
-    render json: @item
+    render json: @user.items
   end
 
   # POST /items
@@ -18,23 +11,12 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
 
     if @item.save
-      render json: @item, status: :created, location: @item
+      render json: @item, status: :created, location: [@user, @item]
     else
       render json: @item.errors, status: :unprocessable_entity
     end
   end
 
-  #These will be implemented in the future
-
-  # # PATCH/PUT /items/1
-  # def update
-  #   if @item.update(item_params)
-  #     render json: @item
-  #   else
-  #     render json: @item.errors, status: :unprocessable_entity
-  #   end
-  # end
-  #
   # # DELETE /items/1
   # def destroy
   #   @item.destroy
@@ -49,5 +31,9 @@ class ItemsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def item_params
       params.require(:item).permit(:name, :user_id)
+    end
+
+    def set_user
+      @user = User.find(current_user.id)
     end
 end

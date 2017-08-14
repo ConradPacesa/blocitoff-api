@@ -11,8 +11,7 @@ development:
   <<: *default
 
 test:
-  adapter: postgresql
-  database: blocitoff_test
+  <<: *default
 
 production:
   <<: *default
