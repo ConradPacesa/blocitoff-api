@@ -19,6 +19,13 @@ RSpec.describe ItemsController, type: :controller do
         expect(response).to have_http_status(:unauthorized)
       end
     end
+
+    describe 'DELETE #destroy' do
+      it 'returns http status unauthorized' do
+        delete :destroy, params: {user_id: user.id, id: item.id}, session: nil
+        expect(response).to have_http_status(:unauthorized)
+      end
+    end
   end
 
   context 'authorized user' do
@@ -55,17 +62,17 @@ RSpec.describe ItemsController, type: :controller do
       end
     end
 
-    # Tests for furture featres to be implemented
+    describe "DELETE #destroy" do
+      it 'returns http status success' do
+        delete :destroy, params: {user_id: user.id, id: item.id}, session: nil
+        expect(response).to have_http_status(:success)
+      end
 
-    # describe "DELETE #destroy" do
-    #   puts Item.count
-    #   it "destroys the requested item" do
-    #     expect {
-    #       delete :destroy, params: {user_id: user.id, id: item.id}, session: nil
-    #     }.to change(Item, :count).by(-1)
-    #   end
-    #   puts Item.count
-    # end
-
+      it "destroys the requested item" do
+        delete :destroy, params: {user_id: user.id, id: item.id}, session: nil
+        count = Item.where({id: item.id}).size
+        expect(count).to eq 0
+      end
+    end
   end
 end

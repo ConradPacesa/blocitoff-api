@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :update, :destroy]
+  before_action :set_item, only: [:show, :destroy]
   before_action :set_user
 
   def index
@@ -17,10 +17,11 @@ class ItemsController < ApplicationController
     end
   end
 
-  # # DELETE /items/1
-  # def destroy
-  #   @item.destroy
-  # end
+  # DELETE /items/1
+  def destroy
+    @item.destroy
+    head :no_content
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
