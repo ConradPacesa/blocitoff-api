@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
   include ActionController::Serialization
+  include ActionController::MimeResponds
 
   acts_as_token_authentication_handler_for User
 
