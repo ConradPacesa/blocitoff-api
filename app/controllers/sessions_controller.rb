@@ -11,7 +11,7 @@ class SessionsController < Devise::SessionsController
     sign_in(resource_name, resource)
     yield resource if block_given?
     user = @user
-    render status: 200, json: { email: user.email, name: user.name, authentication_token: user.authentication_token }
+    render status: 200, json: { id: user.id, email: user.email, name: user.name, authentication_token: user.authentication_token }
   end
 
   def destroy
