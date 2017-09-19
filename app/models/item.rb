@@ -1,6 +1,5 @@
 class Item < ApplicationRecord
   belongs_to :user
-  attr_reader :test_field
 
   TIME_REMAINING_DAYS = 7
 
