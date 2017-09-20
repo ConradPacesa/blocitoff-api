@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :destroy]
+  before_action :set_item, only: [:show, :update, :destroy]
   before_action :set_user
 
   def index
@@ -12,6 +12,14 @@ class ItemsController < ApplicationController
 
     if @item.save
       render json: @item, status: :created, location: [@user, @item]
+    else
+      render json: @item.errors, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    if @item.update(item_params)
+      render json: @item
     else
       render json: @item.errors, status: :unprocessable_entity
     end
@@ -31,7 +39,7 @@ class ItemsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def item_params
-      params.require(:item).permit(:name, :user_id)
+      params.require(:item).permit(:name, :user_id, :completed)
     end
 
     def set_user
