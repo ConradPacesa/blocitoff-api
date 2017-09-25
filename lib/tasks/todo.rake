@@ -3,5 +3,4 @@ namespace :todo do
   task delete_items: :environment do
     Item.where("created_at <= ?", Time.now - Item::TIME_REMAINING_DAYS).destroy_all
   end
-
 end
