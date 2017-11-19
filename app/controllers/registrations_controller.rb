@@ -2,6 +2,9 @@ class RegistrationsController < Devise::RegistrationsController
 
   respond_to :json
 
+  # Modified the Devise create method to for purpose of building API 
+  # Create does not respond with path on successful sign-up, instead this is handled by the front-end. 
+  # Also removed flash messages. 
   def create
     build_resource(sign_up_params)
 
@@ -24,10 +27,12 @@ class RegistrationsController < Devise::RegistrationsController
 
   private
 
+  # Override Devise sign up params to include name field
   def sign_up_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
+  # Override Devise account update params to include name field 
   def account_update_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password)
   end

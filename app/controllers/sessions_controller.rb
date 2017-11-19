@@ -6,6 +6,7 @@ class SessionsController < Devise::SessionsController
     super
   end
 
+  # Modified the create method on the devise sessions controller to retrun the user info to the client 
   def create
     self.resource = warden.authenticate!(auth_options)
     sign_in(resource_name, resource)
@@ -14,6 +15,7 @@ class SessionsController < Devise::SessionsController
     render status: 200, json: { id: user.id, email: user.email, name: user.name, authentication_token: user.authentication_token }
   end
 
+  # Modified the Devise sessions contotoller destroy to destroy the users auth token. 
   def destroy
     user = User.find_by(authentication_token: request.headers['X-User-Token'])
     user.authentication_token = nil
