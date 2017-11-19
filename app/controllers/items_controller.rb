@@ -17,6 +17,7 @@ class ItemsController < ApplicationController
     end
   end
 
+  # UPDATE /items/1
   def update
     if @item.update(item_params)
       render json: @item

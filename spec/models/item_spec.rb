@@ -10,5 +10,9 @@ RSpec.describe Item, type: :model do
     it 'has name and user attributes' do
       expect(item).to have_attributes(name: item.name, user: item.user)
     end
+
+    it 'has expires_at and completed attributes' do 
+      expect(item).to have_attributes(expires_at: item.expires_at, completed: item.completed)
+    end 
   end
 end
